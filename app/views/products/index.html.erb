@@ -2,6 +2,36 @@
   <div class="row">
     <div class="col-12">
       <h1>Productos</h1>
+      
+      <div class="float-right">
+        <%= link_to  "Crear Producto", new_product_path, class:"btn btn-warning" %>
+      </div>
+      <br>
+      <div class="pt-4">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Categoria</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% @products.each do |p| %>
+        
+            <tr>
+              <td> <%= p.name %> </td>
+              <td> <%= p.price %> </td>
+              <td> <%= p.categories.map(&:name).sort.join(", ") %> </td>
+              <td> <%= link_to  "Editar", edit_product_path(p) %> </td>
+              <td> <%= link_to  "Eliminar", product_path(p), method: :delete %> </td>
+            </tr>
+        
+          <% end %>
+        </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

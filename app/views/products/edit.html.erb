@@ -1,2 +1,33 @@
-<h1>Products#edit</h1>
-<p>Find me in app/views/products/edit.html.erb</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <h1>Editar Producto</h1>
+
+      <%= form_for @product do |f| %>
+
+      <!-- NAME INPUT -->
+      <div class="form-group mt-3">
+        <%= f.text_field :name, class:"form-control", placeholder:"Nombre del producto" %>
+      </div>
+      <!-- PRICE INPUT -->
+      <div class="form-group">
+        <%= f.text_field :price, class:"form-control", placeholder:"Precio del producto" %>
+      </div>
+
+      <!-- CATEGORIES CHECKBOXS -->
+      <div class="form-group pt-0">
+        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+        <br>
+        <%= b.label class:"label-checkbox" do %>
+        <%=b.check_box%>
+        <%=b.text%>
+        <%end%>
+        <% end %>
+      </div>
+
+      <%= f.submit 'Editar producto', :class => 'btn btn-warning btn-block' %> 
+
+      <% end %>
+    </div>
+  </div>
+</div>
